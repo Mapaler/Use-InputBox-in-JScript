@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ 缺点：在XML不同区域内写两种不同语言的代码，难以管理。无法良好的进行语法高亮显示。JS内部分语法失效。
+ Disadvantages: Writing code in two different languages in different areas of XML is difficult to manage.
+                Syntax highlighting is not possible. Some syntax in JS is invalid.
+-->
+<package xmlns="http://schemas.microsoft.com/WindowsScriptHost">
+	<job id="alert_test">
+		<script language="VBScript">
+<![CDATA[
+Function vbMsgBox(prompt,buttons,title)
+	vbMsgBox = MsgBox(prompt,buttons,title)
+End Function
+Function vbInputBox(prompt,title,default)
+	vbInputBox = InputBox(prompt,title,default)
+End Function
+]]>
+		</script>
+		
+		<script language="JScript">
+<![CDATA[
+var VbMsgBoxStyle = {
+	"vbOKOnly":0,
+	"vbOKCancel":1,
+	"vbAbortRetryIgnore":2,
+	"vbYesNoCancel":3,
+	"vbYesNo":4,
+	"vbRetryCancel":5,
+	"vbCritical":16,
+	"vbQuestion":32,
+	"vbExclamation":48,
+	"vbInformation":64,
+	"vbDefaultButton1":0,
+	"vbDefaultButton2":256,
+	"vbDefaultButton3":512,
+	"vbDefaultButton4":768,
+	"vbApplicationModal":0,
+	"vbSystemModal":4096,
+	"vbMsgBoxHelpButton":16384,
+	"vbMsgBoxSetForeground":65536,
+	"vbMsgBoxRight":524288,
+	"vbMsgBoxRtlReading":1048576
+};
+var VbMsgBoxResult = {
+	"vbOK":1,
+	"vbCancel":2,
+	"vbAbort":3,
+	"vbRetry":4,
+	"vbIgnore":5,
+	"vbYes":6,
+	"vbNo":7
+};
+function MsgBox(strText,nType,strTitle) {
+	strTitle = strTitle || "";
+	nType = nType || 0;
+	return vbMsgBox(strText, nType, strTitle);
+};
+var alert = MsgBox;
+function confirm(strText) {
+	return MsgBox(strText, VbMsgBoxStyle.vbQuestion | VbMsgBoxStyle.vbOKCancel) == VbMsgBoxResult.vbOK;
+};
+function InputBox(sPrompt,sTitle,sDefault) {
+	sPrompt = sPrompt || "";
+	sTitle = sTitle || "";
+	sDefault = sDefault || "";
+	return vbInputBox(sPrompt,sTitle,sDefault);
+};
+var prompt = InputBox;
+
+/**
+* 测试代码
+* Test Code
+*/
+
+var str = prompt("Enter your name");
+if(str) {
+	var res = confirm("Are you " + str + "?");
+	if(res)
+		alert("Yes,you are " + str);
+	else
+		alert("No,you are not " + str);
+}
+]]>
+		</script>
+	</job>
+</package>
