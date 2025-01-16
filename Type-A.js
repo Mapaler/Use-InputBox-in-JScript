@@ -22,6 +22,7 @@ if (isWin64() && /System32/i.test(WScript.FullName)) {
  * 以下代码来自：
  * The following code is from:
  * https://demon.tw/programming/javascript-vbs-inpubox-msgbox.html
+ * Licence: Attribution-Noncommercial-Share Alike 2.5 China Mainland(署名-非商业性使用-相同方式共享 2.5 中国大陆)
  */
 
 function MsgBox(prompt, buttons, title)

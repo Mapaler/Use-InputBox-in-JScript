@@ -17,13 +17,17 @@ However, JScript doesn't support VBS's InputBox (and even C# doesn't support it,
 
 ## 解决方案<br>Solution
 ### Type-A: MSScriptControl.ScriptControl
-Code File: [Type-A](Type-A.js)
+Code File: [Type-A](Type-A.js) 
 
 原理：用 MSScriptControl.ScriptControl 对象运行 VBS 代码  
 Principle: Run VBS code by MSScriptControl.ScriptControl Object
 
-原始代码来自于 [Demon's Blog](https://demon.tw/programming/javascript-vbs-inpubox-msgbox.html) ，我 2015 年发现这个代码无法在 64 位 Windows 运行，经检查发现 MSScriptControl.ScriptControl 只有 32 位的文件，因此需要用 32 位 WScript 运行才能正常使用。我在这个示例代码的开头部分加入了 64 位系统重定向到 32 位 WScript 运行的代码。  
-The original code comes from [Demon's Blog](https://demon.tw/programming/javascript-vbs-inpubox-msgbox.html), I found out in 2015 that this code does not work on 64-bit Windows, and upon inspection found that MSScriptControl.ScriptControl only has a 32-bit file, so I need to use 32-bit WScript Run to work properly. I've added code at the beginning of this sample code that redirects a 64-bit system to a 32-bit WScript run.
+> ### Licence
+> 原始代码来自于 [Demon's Blog](https://demon.tw/programming/javascript-vbs-inpubox-msgbox.html) ，所以此版本具有独立的许可证 [署名-非商业性使用-相同方式共享 2.5 中国大陆](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/)  
+>The original code comes from [Demon's Blog](https://demon.tw/programming/javascript-vbs-inpubox-msgbox.html), so this version has a separate license. [Attribution-Noncommercial-Share Alike 2.5 China Mainland](https://creativecommons.org/licenses/by-nc-sa/2.5/)
+
+我 2015 年发现这个代码无法在 64 位 Windows 运行，经检查发现 MSScriptControl.ScriptControl 只有 32 位的文件，因此需要用 32 位 WScript 运行才能正常使用。我在这个示例代码的开头部分加入了 64 位系统重定向到 32 位 WScript 运行的代码。  
+I found out in 2015 that this code does not work on 64-bit Windows, and upon inspection found that MSScriptControl.ScriptControl only has a 32-bit file, so I need to use 32-bit WScript Run to work properly. I've added code at the beginning of this sample code that redirects a 64-bit system to a 32-bit WScript run.
 
 ### Type-B: Another VBS
 Code File: [Type-B](Type-B.js)
