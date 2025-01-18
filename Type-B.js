@@ -38,9 +38,10 @@
 	};
 	
 	this.MsgBox = function(strText,nType,strTitle,nSecondsToWait) {
-		nSecondsToWait = nSecondsToWait ? nSecondsToWait : 0;
-		strTitle = strTitle || "";
+		strText = strText || ""
 		nType = nType || 0;
+		strTitle = strTitle || "";
+		nSecondsToWait = nSecondsToWait || 0;
 		return wsh.Popup(strText, nSecondsToWait, strTitle, nType);
 	};
 	this.alert = this.MsgBox;
@@ -82,7 +83,9 @@
 		if (!noNull) return false;
 		return input;
 	};
-	this.prompt = this.InputBox;
+	this.prompt = function(sPrompt,sTitle,sDefault) {
+		return this.InputBox(sPrompt,sDefault,sTitle);
+	};
 })();
 
 /**
@@ -91,7 +94,7 @@
 */
 
 var str = prompt("Enter your name");
-if(str != "")
+if(str)
 {
 	var res = confirm("Are you " + str + "?");
 	if(res)

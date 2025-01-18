@@ -52,16 +52,24 @@ function InputBox(prompt, title, def)
 	else return "";
 }
 
+var alert = MsgBox;
+function confirm(strText) {
+	return MsgBox(strText, 32 | 1) == 1;
+};
+function prompt(sPrompt,sTitle,sDefault) {
+	return InputBox(sPrompt,sDefault,sTitle);
+};
+
 /**
  * 测试代码
  * Test Code
  */
-var str = InputBox("Enter your name");
-if(str != "")
+var str = prompt("Enter your name");
+if(str)
 {
-	var res = MsgBox("Are you " + str + "?", 4);
-	if(res == 6)
-		MsgBox("Yes,you are " + str);
+	var res = confirm("Are you " + str + "?");
+	if(res)
+		alert("Yes,you are " + str);
 	else
-		MsgBox("No,you are not " + str);
+		alert("No,you are not " + str);
 }

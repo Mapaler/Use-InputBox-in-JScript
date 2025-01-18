@@ -51,8 +51,9 @@ var VbMsgBoxResult = {
 	"vbNo":7
 };
 function MsgBox(strText,nType,strTitle) {
-	strTitle = strTitle || "";
+	strText = strText || ""
 	nType = nType || 0;
+	strTitle = strTitle || "";
 	return vbMsgBox(strText, nType, strTitle);
 };
 var alert = MsgBox;
@@ -65,7 +66,9 @@ function InputBox(sPrompt,sTitle,sDefault) {
 	sDefault = sDefault || "";
 	return vbInputBox(sPrompt,sTitle,sDefault);
 };
-var prompt = InputBox;
+function prompt(sPrompt,sTitle,sDefault) {
+	return InputBox(sPrompt,sDefault,sTitle);
+};
 
 /**
 * 测试代码
