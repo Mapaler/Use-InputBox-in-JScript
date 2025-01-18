@@ -36,6 +36,16 @@
 		"vbYes":6,
 		"vbNo":7
 	};
+	this.OpenTextFileIOMode = {
+		ForReading: 1,
+		ForWriting: 2,
+		ForAppending: 8
+	}
+	this.OpenTextFileFormat = {
+		TristateUseDefault: -2,
+		TristateTrue: -1,
+		TristateFalse: 0
+	}
 	
 	this.MsgBox = function(strText,nType,strTitle,nSecondsToWait) {
 		strText = strText || ""
@@ -68,10 +78,10 @@
 				"End If" ,
 				"WScript.StdOut.WriteLine(input)"
 			].join("\r\n");
-        //var debug = 1;
-        var iptvbsPath;
-        iptvbsPath = (typeof(debug) != "undefined") ? WScript.ScriptName + ".vbs" : wsh.Environment("Process").Item("temp") + "\\" + WScript.ScriptName + ".vbs";
-        var iptvbs = fso.OpenTextFile(iptvbsPath,2,true,-1);
+		var iptvbsPath;
+		//var debug = 1;
+		iptvbsPath = (typeof debug != "undefined" ? "" : wsh.Environment("Process").Item("temp") + "\\") + WScript.ScriptName + ".vbs";
+		var iptvbs = fso.OpenTextFile(iptvbsPath, OpenTextFileIOMode.ForWriting, true, OpenTextFileFormat.TristateTrue);
 		iptvbs.Write(iptvbsCode);
 		iptvbs.Close();
 		var oExec = wsh.Exec("wscript.exe \"" + iptvbsPath + "\"");
