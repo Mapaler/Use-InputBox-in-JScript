@@ -35,12 +35,8 @@ Code File: [Type-B](Type-B.js)
 原理：在系统临时文件夹生成一个 VBS 文件用来执行 InputBox，通过标准输入流输入函数参数和标准输出流读取返回值。  
 Principle: Generate a VBS file in the temporary folder of the system to execute the InputBox, and read the return value through the input function parameters of the standard input stream and the standard output stream.
 
-这完全是我自己独立想出来的方法，用起来有以下缺点：  
-This is a completely independent method that I came up with, and it has the following disadvantages when used to use it:
-* 用行来分割读取参数内容，因此 InputBox 无法输入多行提示文本。  
-Lines are used to split the content of the read parameter, so the InputBox cannot enter multiple lines of prompt text.
-* 启动一个另外的进程执行 VBS ，InputBox 弹出框后的 MsgBox 不在前台。  
-Start another process to execute VBS, and the MsgBox after the InputBox pop-up box is not in the foreground.
+这个 InputBox 函数完全是我自己独立想出来的方法。因为需要启动一个另外的进程执行 VBS，缺点是InputBox 弹出框后的 MsgBox 不在前台。  
+This InputBox function is something I came up with on my own. Because need to start another process to execute VBS, the disadvantage is that the MsgBox after the InputBox pop-up box is not in the foreground.
 
 ### Type-C: WSF file
 Code File: [Type-C](Type-C.wsf)
